@@ -43,7 +43,6 @@ function App() {
     let aces = 0
     let score = user.reduce((acc, card) => {
       let value = card.value
-      console.log(value)
       if(isNaN(value)) {
 
         if(value === 'ACE') {
@@ -53,11 +52,10 @@ function App() {
           return acc + 10
         }
       } else {
-        console.log("in ater ace",isNaN(value), value, acc)
         return acc + Number(value)
       }
     }, 0)
-    console.log(score,"score")
+
     while(aces > 0) {
       aces--
       // if the score is less than 11, and there are more aces, add 1. 
@@ -72,7 +70,6 @@ function App() {
       }
     }
     return score
-    setPlayerScore(score)
   }
 
   let determineWinner = () => {
@@ -85,22 +82,19 @@ function App() {
     }
   }
 
-  let reset = () => {
-    setDeck("")
-    setDealer([])
-    setPlayer([])
-    setWinner("")    
-  }
-
   useEffect(() => {
     setPlayerScore(calculateScore(player))
     setDealerScore(calculateScore(dealer))
+    console.log(dealerScore, playerScore)
+    if(playerScore > 21) {
+      determineWinner()
+    }
+
     if(deck === "") {
       fetchDeck()
     }
 
     if(dealer.length === 0) {
-
       fetchDealer()
     }
 
@@ -134,7 +128,6 @@ function App() {
 
         <button onClick={fetchPlayerCard}>Hit</button>
         <button onClick={determineWinner}>Stand</button>
-        <button onClick={reset}>Reset</button>
       </header>
     </div>
   );
