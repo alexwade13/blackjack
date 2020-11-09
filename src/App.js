@@ -78,8 +78,7 @@ function App() {
   let determineWinner = () => {
     if(playerScore > 21) {
       setWinner("Dealer")
-    }
-    if(playerScore > dealerScore) {
+    } else if(playerScore > dealerScore) {
       setWinner("Player")
     } else {
       setWinner("Dealer")
