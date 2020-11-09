@@ -28,6 +28,15 @@
   color: #61dafb;
 }
 
+.dealer {
+  display: flex;
+  flex-direction: row;
+}
+
+img {
+  max-width: 200px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
